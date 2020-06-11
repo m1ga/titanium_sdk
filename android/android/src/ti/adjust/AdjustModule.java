@@ -11,7 +11,6 @@ package ti.adjust;
 import android.net.Uri;
 import java.util.Map;
 import java.util.HashMap;
-import javax.lang.model.type.NullType;
 import org.appcelerator.kroll.KrollModule;
 import org.appcelerator.kroll.annotations.Kroll;
 import org.appcelerator.titanium.TiApplication;
@@ -22,7 +21,7 @@ import com.adjust.sdk.*;
 @Kroll.module(name="Adjust", id="ti.adjust")
 public class AdjustModule extends KrollModule implements OnAttributionChangedListener,
                                                          OnEventTrackingSucceededListener,
-                                                         OnEventTrackingFailedListener, 
+                                                         OnEventTrackingFailedListener,
                                                          OnSessionTrackingSucceededListener,
                                                          OnSessionTrackingFailedListener,
                                                          OnDeeplinkResponseListener {
@@ -560,7 +559,7 @@ public class AdjustModule extends KrollModule implements OnAttributionChangedLis
 
     @Kroll.method
     public void getGoogleAdId(final V8Function callback) {
-        Adjust.getGoogleAdId(getActivity().getApplication(), new OnDeviceIdsRead() { 
+        Adjust.getGoogleAdId(getActivity().getApplication(), new OnDeviceIdsRead() {
             @Override
             public void onGoogleAdIdRead(String gpsAdId) {
                 Object[] answer = { gpsAdId };
@@ -715,7 +714,7 @@ public class AdjustModule extends KrollModule implements OnAttributionChangedLis
 
         Adjust.setTestOptions(testOptions);
     }
-    
+
     @Override
     public void onAttributionChanged(AdjustAttribution attribution) {
         jsAttributionCallback.call(getKrollObject(), (HashMap<String, String>)AdjustUtil.attributionToMap(attribution));
